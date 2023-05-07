@@ -79,7 +79,7 @@ export default {
         newString = newString.replace(searchString, replaceString);
       }
 
-      searchString = /\n/gi;
+      searchString = /\n+/gi;
       replaceString = ",";
       newString = newString.replace(searchString, replaceString);
 
