@@ -77,6 +77,9 @@ export default {
         searchString = /\s+/g;
         replaceString = ",";
         newString = newString.replace(searchString, replaceString);
+        if (newString.endsWith(',')) {
+          newString = newString.slice(0, -1);
+        }
       }
 
       searchString = /\n+/gi;
@@ -95,10 +98,10 @@ export default {
 
       newString = "'" + newString + "'"
 
-      if(this.includeParentheses){
-        if(this.wrapResult){
+      if (this.includeParentheses) {
+        if (this.wrapResult) {
           newString = "(\n" + newString + "\n)"
-        }else {
+        } else {
           newString = "(" + newString + ")"
         }
       }
