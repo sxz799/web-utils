@@ -73,31 +73,35 @@ export default {
       let searchString;
       let replaceString;
 
+      //如果空格也作为分隔符就将一个或多个连续的空格转为逗号
       if (this.splitSpace) {
         searchString = /\s+/g;
         replaceString = ",";
         newString = newString.replace(searchString, replaceString);
+        //如果最后一个字符是逗号 就去掉它
         if (newString.endsWith(',')) {
           newString = newString.slice(0, -1);
         }
       }
-
+      //将一个或多个连续的换行符转为逗号
       searchString = /\n+/gi;
       replaceString = ",";
       newString = newString.replace(searchString, replaceString);
 
+      //整理成正确的格式
       searchString = /,/gi;
       replaceString = "','";
       newString = newString.replace(searchString, replaceString);
+      newString = "'" + newString + "'"
 
+      //处理为换行
       if (this.wrapResult) {
         searchString = /','/gi;
         replaceString = "',\n'";
         newString = newString.replace(searchString, replaceString);
       }
 
-      newString = "'" + newString + "'"
-
+      //处理勾选了添加括号的情况
       if (this.includeParentheses) {
         if (this.wrapResult) {
           newString = "(\n" + newString + "\n)"
