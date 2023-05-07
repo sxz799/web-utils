@@ -1,19 +1,20 @@
 <template>
   <div class="common-layout">
     <el-container>
+      <el-header style="height: 10px;color: #42b983">常用小工具</el-header>
       <el-container>
+
         <el-aside width="7%"></el-aside>
         <el-container>
           <el-main>
-            <el-tabs tab-position="left"  class="demo-tabs">
-
-              <el-tab-pane label="格式化SQL IN 条件">
+            <el-tabs tab-position="left"  class="demo-tabs" >
+              <el-tab-pane label="格式化SQL IN 条件"  style="max-height: 600px; overflow-y: auto;">
                 <el-card class="box-card">
                   <p style="text-align: left">可将以换行符分隔的字符串转为 in 查询条件格式</p>
                   <TransToSqlIn/>
                 </el-card>
               </el-tab-pane>
-              <el-tab-pane label="订阅格式转换">
+              <el-tab-pane label="订阅格式转换"  style="max-height: 600px; overflow-y: auto;">
                 <el-card class="box-card">
                   <p style="text-align: left">适用于Clash软件的订阅格式转换</p>
                   <SubscribeTrans/>
@@ -21,12 +22,12 @@
 
               </el-tab-pane>
               <el-tab-pane label="...">
-                <el-card class="box-card">
+                <el-card class="box-card" style="max-height: 600px; overflow-y: auto;">
                  ...
                 </el-card>
               </el-tab-pane>
               <el-tab-pane label="...">
-                <el-card class="box-card">
+                <el-card class="box-card" style="max-height: 600px; overflow-y: auto;">
                   ...
                 </el-card>
               </el-tab-pane>

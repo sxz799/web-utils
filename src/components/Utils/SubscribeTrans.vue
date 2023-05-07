@@ -3,7 +3,7 @@
     <el-form-item>
       <el-input
           v-model="textarea1"
-          :autosize="{ minRows: 6, maxRows: 10 }"
+          :autosize="{ minRows: 6, maxRows: 6 }"
           type="textarea"
           placeholder="Please input"
       />
@@ -19,7 +19,7 @@
     <el-form-item>
       <el-input
           v-model="textarea2"
-          :autosize="{ minRows: 6, maxRows: 10 }"
+          :autosize="{ minRows: 6, maxRows: 6 }"
           type="textarea"
           placeholder="Please input"
       />
