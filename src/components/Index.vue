@@ -7,14 +7,14 @@
         <el-aside width="7%"></el-aside>
         <el-container>
           <el-main>
-            <el-tabs tab-position="left"  class="demo-tabs" >
-              <el-tab-pane label="格式化SQL IN 条件"  style="max-height: 600px; overflow-y: auto;">
+            <el-tabs :tab-position="tabPos" class="demo-tabs">
+              <el-tab-pane label="格式化SQL IN 条件" style="max-height: 600px; overflow-y: auto;">
                 <el-card class="box-card">
                   <p style="text-align: left">可将以换行符分隔的字符串转为 in 查询条件格式</p>
                   <TransToSqlIn/>
                 </el-card>
               </el-tab-pane>
-              <el-tab-pane label="订阅格式转换"  style="max-height: 600px; overflow-y: auto;">
+              <el-tab-pane label="订阅格式转换" style="max-height: 600px; overflow-y: auto;">
                 <el-card class="box-card">
                   <p style="text-align: left">适用于Clash软件的订阅格式转换</p>
                   <SubscribeTrans/>
@@ -23,7 +23,7 @@
               </el-tab-pane>
               <el-tab-pane label="...">
                 <el-card class="box-card" style="max-height: 600px; overflow-y: auto;">
-                 ...
+                  ...
                 </el-card>
               </el-tab-pane>
               <el-tab-pane label="...">
@@ -55,7 +55,12 @@ export default defineComponent({
     msg: String,
   },
   components: {
-    SubscribeTrans,TransToSqlIn
+    SubscribeTrans, TransToSqlIn
+  },
+  data() {
+    return {
+      tabPos: navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i) === null ? "left":"top"
+    }
   }
 });
 </script>
