@@ -79,15 +79,14 @@ export default {
         replaceString = ",";
         newString = newString.replace(searchString, replaceString);
         //如果最后一个字符是逗号 就去掉它
-        if (newString.endsWith(',')) {
-          newString = newString.slice(0, -1);
-        }
       }
       //将一个或多个连续的换行符转为逗号
       searchString = /\n+/gi;
       replaceString = ",";
       newString = newString.replace(searchString, replaceString);
-
+      if (newString.endsWith(',')) {
+        newString = newString.slice(0, -1);
+      }
       //整理成正确的格式
       searchString = /,/gi;
       replaceString = "','";

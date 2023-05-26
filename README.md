@@ -1,2 +1,2 @@
-# web-string-utils
+# web-utils
 1 2
