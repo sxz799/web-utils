@@ -21,9 +21,10 @@
                 </el-card>
 
               </el-tab-pane>
-              <el-tab-pane label="...">
-                <el-card class="box-card" style="max-height: 600px; overflow-y: auto;">
-                  ...
+              <el-tab-pane label="密码生成器" style="max-height: 600px; overflow-y: auto;">
+                <el-card class="box-card">
+                  <p style="text-align: left">密码生成器</p>
+                  <PasswordGenerator/>
                 </el-card>
               </el-tab-pane>
               <el-tab-pane label="...">
@@ -48,6 +49,7 @@
 import {defineComponent} from 'vue';
 import SubscribeTrans from './Utils/SubscribeTrans.vue'
 import TransToSqlIn from './Utils/TransToSqlIn.vue'
+import PasswordGenerator from './Utils/PasswordGenerator.vue'
 
 export default defineComponent({
   name: 'Index',
@@ -55,11 +57,11 @@ export default defineComponent({
     msg: String,
   },
   components: {
-    SubscribeTrans, TransToSqlIn
+    SubscribeTrans, TransToSqlIn,PasswordGenerator
   },
   data() {
     return {
-      tabPos: navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i) === null ? "left":"top"
+      tabPos: navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i) === null ? "left" : "top"
     }
   }
 });
