@@ -71,35 +71,79 @@ export default {
       ElMessage.success("转换完成！");
     },
     modifyInput(input) {
-      let searchString = /    - /gi;
-      let replaceString = "  -";
-      let newString = input.replace(searchString, replaceString);
-      searchString = /{ /gi;
+      let searchString = '';
+      let replaceString = '';
+      let newString = input
+
+      searchString = /\"/gi;
+      replaceString = "";
+      newString = newString.replace(searchString, replaceString);
+
+      searchString = / /gi;
+      replaceString = "";
+      newString = newString.replace(searchString, replaceString);
+
+      searchString = /:/gi;
+      replaceString = " : ";
+      newString = newString.replace(searchString, replaceString);
+
+
+
+
+
+      searchString = /{/gi;
       replaceString = "\n    ";
       newString = newString.replace(searchString, replaceString);
 
       searchString = /,/gi;
-      replaceString = "\n   ";
+      replaceString = "\n    ";
       newString = newString.replace(searchString, replaceString);
 
-      searchString = / }/gi;
+      searchString = /}/gi;
       replaceString = "";
+      newString = newString.replace(searchString, replaceString);
+
+      searchString = /-\n/gi;
+      replaceString = "  -\n";
       newString = newString.replace(searchString, replaceString);
 
       return newString
     },
     modifyName(input) {
-      const string = input;
-      const startString = 'name:';
-      const endString = ', type:';
 
+      let searchString = '';
+      let replaceString = '';
+      let newString = input
+
+
+      searchString = /\"/gi;
+      replaceString = "";
+      newString = newString.replace(searchString, replaceString);
+
+      searchString = / /gi;
+      replaceString = "";
+      newString = newString.replace(searchString, replaceString);
+
+
+
+
+
+      searchString = /:/gi;
+      replaceString = "";
+      newString = newString.toString().replace(searchString, replaceString);
+
+      const startString = 'name';
+      const endString = ',';
       const regex = new RegExp(`${startString}(.*?)${endString}`, 'g');
-      const matches = [...string.matchAll(regex)];
+
+      const matches = [...newString.matchAll(regex)];
       const contents = matches.map(match => match[1]);
-      let searchString = /,/gi;
-      let replaceString = "\n      -";
-      let newString = contents.toString().replace(searchString, replaceString);
-      newString="      -"+newString
+      searchString = /,/gi;
+      replaceString = "\n      - ";
+      newString = contents.toString().replace(searchString, replaceString);
+
+
+      newString = "      - " + newString
       return newString
     }
   }
