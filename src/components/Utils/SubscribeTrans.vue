@@ -5,7 +5,7 @@
           v-model="textarea1"
           :autosize="{ minRows: 6, maxRows: 6 }"
           type="textarea"
-          placeholder="Please input"
+          placeholder="请将要转换的内容粘贴在此处"
       />
     </el-form-item>
 
@@ -21,7 +21,16 @@
           v-model="textarea2"
           :autosize="{ minRows: 6, maxRows: 6 }"
           type="textarea"
-          placeholder="Please input"
+          placeholder="转换后的结果显示在这里..."
+      />
+    </el-form-item>
+
+    <el-form-item>
+      <el-input
+          v-model="textarea3"
+          :autosize="{ minRows: 6, maxRows: 6 }"
+          type="textarea"
+          placeholder="转换后的结果显示在这里..."
       />
     </el-form-item>
 
@@ -42,7 +51,8 @@ export default {
   data() {
     return {
       textarea1: '',
-      textarea2: ''
+      textarea2: '',
+      textarea3: ''
     };
   },
   methods: {
@@ -57,6 +67,7 @@ export default {
       }
 
       this.textarea2 = this.modifyInput(this.textarea1)
+      this.textarea3 = this.modifyName(this.textarea1)
       ElMessage.success("转换完成！");
     },
     modifyInput(input) {
@@ -75,6 +86,20 @@ export default {
       replaceString = "";
       newString = newString.replace(searchString, replaceString);
 
+      return newString
+    },
+    modifyName(input) {
+      const string = input;
+      const startString = 'name:';
+      const endString = ', type:';
+
+      const regex = new RegExp(`${startString}(.*?)${endString}`, 'g');
+      const matches = [...string.matchAll(regex)];
+      const contents = matches.map(match => match[1]);
+      let searchString = /,/gi;
+      let replaceString = "\n      -";
+      let newString = contents.toString().replace(searchString, replaceString);
+      newString="      -"+newString
       return newString
     }
   }
