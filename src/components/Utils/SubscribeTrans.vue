@@ -9,12 +9,23 @@
       />
     </el-form-item>
 
-    <el-form-item style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+    <el-form-item style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <el-row>
+        <el-col :span="12" >
+          <el-input
+              v-model="keyword"
+              placeholder="内容过滤"
+          ></el-input>
+        </el-col>
+        <el-col :span="12" >
+          <el-button type="primary" @click="modify">转换</el-button>
+          <el-button type="success" @click="copy">复制</el-button>
+        </el-col>
+      </el-row>
 
-      <el-button type="primary" @click="modify">转换</el-button>
-      <el-button type="success" @click="copy">复制</el-button>
 
     </el-form-item>
+
 
     <el-form-item>
       <el-input
@@ -52,7 +63,8 @@ export default {
     return {
       textarea1: '',
       textarea2: '',
-      textarea3: ''
+      textarea3: '',
+      keyword: ''
     };
   },
   methods: {
@@ -70,10 +82,21 @@ export default {
       this.textarea3 = this.modifyName(this.textarea1)
       ElMessage.success("转换完成！");
     },
+    filterLines(text, char) {
+      const lines = text.split('\n');
+      const filteredLines = lines.filter(function (line) {
+        return line.includes(char);
+      });
+      return filteredLines.join('\n');
+    },
     modifyInput(input) {
       let searchString = '';
       let replaceString = '';
       let newString = input
+
+      if (this.keyword.length > 0) {
+        newString = this.filterLines(newString, this.keyword)
+      }
 
       searchString = /\"/gi;
       replaceString = "";
@@ -86,9 +109,6 @@ export default {
       searchString = /:/gi;
       replaceString = " : ";
       newString = newString.replace(searchString, replaceString);
-
-
-
 
 
       searchString = /{/gi;
@@ -116,6 +136,11 @@ export default {
       let newString = input
 
 
+      if (this.keyword.length > 0) {
+        newString = this.filterLines(newString, this.keyword)
+      }
+
+
       searchString = /\"/gi;
       replaceString = "";
       newString = newString.replace(searchString, replaceString);
@@ -125,14 +150,10 @@ export default {
       newString = newString.replace(searchString, replaceString);
 
 
-
-
-
       searchString = /:/gi;
       replaceString = "";
       newString = newString.toString().replace(searchString, replaceString);
-
-      const startString = 'name';
+      const startString = '{name';
       const endString = ',';
       const regex = new RegExp(`${startString}(.*?)${endString}`, 'g');
 
