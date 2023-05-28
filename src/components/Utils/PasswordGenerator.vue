@@ -1,40 +1,55 @@
 <template>
+  <el-form >
   <div class="password-generator">
+    <el-form-item>
     <el-input
         v-model="password"
         placeholder="生成的密码"
         readonly
     ></el-input>
+    </el-form-item>
     <div class="slider-wrapper">
+      <el-form-item>
       <el-slider
           v-model="length"
-          :min="6"
-          :max="20"
+          :min="4"
+          :max="30"
           :step="1"
           show-input
           :input-controls="false"
           :show-tooltip="false"
           :format-tooltip="formatTooltip"
       ></el-slider>
+      </el-form-item>
     </div>
+    <el-form-item>
     <el-checkbox-group v-model="options">
       <el-checkbox label="uppercase">大写字母</el-checkbox>
       <el-checkbox label="lowercase">小写字母</el-checkbox>
       <el-checkbox label="numbers">数字</el-checkbox>
       <el-checkbox label="symbols">特殊符号</el-checkbox>
     </el-checkbox-group>
+    </el-form-item>
+    <el-form-item label="排除的字符:">
+      <el-input
+          v-model="excludedChars"
+      ></el-input>
+    </el-form-item>
+
     <el-button type="primary" @click="generatePassword">生成密码</el-button>
     <el-button type="success" @click="copyPassword" :disabled="!password">复制</el-button>
   </div>
+  </el-form>
 </template>
 
 <script>
-import { ref } from 'vue';
-import { ElMessage } from 'element-plus';
+import {ref} from 'vue';
+import {ElMessage} from 'element-plus';
 
 export default {
   name: 'PasswordGenerator',
   setup() {
+    const excludedChars = ref('lI10oO');
     const password = ref('');
     const length = ref(12);
     const options = ref(['uppercase', 'lowercase', 'numbers']);
@@ -58,6 +73,10 @@ export default {
       validOptions.forEach(option => {
         characters += characterSets[option];
       });
+
+      const excludedCharacters = excludedChars.value;
+      characters = characters.replace(new RegExp(`[${excludedCharacters}]`, 'g'), '');
+
 
       let result = '';
 
@@ -83,6 +102,7 @@ export default {
     };
 
     return {
+      excludedChars,
       password,
       length,
       options,

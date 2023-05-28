@@ -4,7 +4,7 @@
       <el-header style="height: 10px;color: #42b983">常用小工具</el-header>
       <el-container>
 
-        <el-aside width="7%"></el-aside>
+        <el-aside width="15%"></el-aside>
         <el-container>
           <el-main>
             <el-tabs :tab-position="tabPos" class="demo-tabs">
@@ -37,7 +37,7 @@
 
           </el-main>
         </el-container>
-        <el-aside width="10%"></el-aside>
+        <el-aside width="25%"></el-aside>
       </el-container>
     </el-container>
   </div>

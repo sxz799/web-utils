@@ -1,67 +1,74 @@
 <template>
-  <el-form>
+  <el-form >
     <el-form-item>
       <el-input
           v-model="textarea1"
           :autosize="{ minRows: 6, maxRows: 6 }"
           type="textarea"
           @focus="handleFocus"
-          placeholder="请将要转换的内容粘贴在此处"
+          placeholder="点击此处自动获取待转换的内容"
       />
     </el-form-item>
 
     <el-form-item>
       <el-row :gutter="10">
         <el-col :span="7">
+          <el-form-item label="转换格式:">
           <el-radio-group v-model="formatType">
-            <el-radio label="Json" size="large">Json</el-radio>
-            <el-radio label="Yaml" size="large">Yaml</el-radio>
+            <el-radio label="Json" >Json</el-radio>
+            <el-radio label="Yaml" >Yaml</el-radio>
           </el-radio-group>
+          </el-form-item>
         </el-col>
 
         <el-col :span="7">
+          <el-form-item label="内容过滤:">
           <el-input
               v-model="keyword"
               placeholder="内容过滤"
           ></el-input>
+          </el-form-item>
         </el-col>
 
         <el-col :span="7">
+          <el-form-item label="关键字删除:">
           <el-input
               v-model="delword"
               placeholder="关键字删除"
           ></el-input>
+          </el-form-item>
         </el-col>
 
-        <el-col :span="3">
-          <el-button type="primary" @click="modify">转换</el-button>
+        <el-col :span="2">
+          <el-form-item label="">
+            <el-button type="primary" @click="modify">转换</el-button>
+          </el-form-item>
         </el-col>
 
 
       </el-row>
 
     </el-form-item>
-
-
-    <el-form-item>
-      <el-input
-          v-model="textarea2"
-          :autosize="{ minRows: 6, maxRows: 6 }"
-          type="textarea"
-          placeholder="转换后的结果显示在这里..."
-          @focus="copy1"
-      />
-    </el-form-item>
-
-    <el-form-item>
-      <el-input
-          v-model="textarea3"
-          :autosize="{ minRows: 6, maxRows: 6 }"
-          type="textarea"
-          placeholder="转换后的结果显示在这里..."
-          @focus="copy2"
-      />
-    </el-form-item>
+    <el-row :gutter="10">
+      <el-col :span="12">
+        <el-input
+            v-model="textarea2"
+            :autosize="{ minRows: 6, maxRows: 6 }"
+            type="textarea"
+            placeholder="转换后的结果显示在这里..."
+            @focus="copy1"
+        />
+      </el-col>
+      <el-col :span="12">
+        <el-input
+            v-model="textarea3"
+            :autosize="{ minRows: 6, maxRows: 6 }"
+            type="textarea"
+            placeholder="转换后的节点列表显示在这里..."
+            @focus="copy2"
+        />
+      </el-col>
+    </el-row>
 
 
   </el-form>
@@ -96,12 +103,17 @@ export default {
       });
     },
     copy1() {
-      toClipboard(this.textarea2)
-      ElMessage.success("复制成功！");
+      if(this.textarea2.length>0){
+        toClipboard(this.textarea2)
+        ElMessage.success("复制成功！");
+      }
+
     },
     copy2() {
-      toClipboard(this.textarea3)
-      ElMessage.success("复制成功！");
+      if(this.textarea3.length>0){
+        toClipboard(this.textarea3)
+        ElMessage.success("复制成功！");
+      }
     },
     modify() {
       if (this.textarea1 === "") {
