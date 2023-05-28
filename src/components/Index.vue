@@ -14,9 +14,9 @@
                   <TransToSqlIn/>
                 </el-card>
               </el-tab-pane>
-              <el-tab-pane label="订阅格式转换" style="max-height: 600px; overflow-y: auto;">
+              <el-tab-pane label="ClashX节点格式转换" style="max-height: 600px; overflow-y: auto;">
                 <el-card class="box-card">
-                  <p style="text-align: left">适用于ClashX软件的订阅格式转换</p>
+                  <p style="text-align: left">适用于ClashX软件的节点格式转换</p>
                   <SubscribeTrans/>
                 </el-card>
 
