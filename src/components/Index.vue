@@ -4,7 +4,7 @@
       <el-header style="height: 10px;color: #42b983">常用小工具</el-header>
       <el-container>
 
-        <el-aside width="15%"></el-aside>
+        <el-aside :width="lWidth"></el-aside>
         <el-container>
           <el-main>
             <el-tabs :tab-position="tabPos" class="demo-tabs">
@@ -37,7 +37,7 @@
 
           </el-main>
         </el-container>
-        <el-aside width="25%"></el-aside>
+        <el-aside :width=rWidth></el-aside>
       </el-container>
     </el-container>
   </div>
@@ -50,6 +50,7 @@ import {defineComponent} from 'vue';
 import SubscribeTrans from './Utils/SubscribeTrans.vue'
 import TransToSqlIn from './Utils/TransToSqlIn.vue'
 import PasswordGenerator from './Utils/PasswordGenerator.vue'
+import {th} from "element-plus/es/locale";
 
 export default defineComponent({
   name: 'Index',
@@ -59,9 +60,25 @@ export default defineComponent({
   components: {
     SubscribeTrans, TransToSqlIn,PasswordGenerator
   },
+  mounted() {
+    this.IsPhoneView()
+  },
   data() {
     return {
-      tabPos: navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i) === null ? "left" : "top"
+      lWidth:'15%',
+      rWidth:'25%',
+      tabPos: 'left',
+    }
+  },
+  methods:{
+    IsPhoneView(){
+      let devicesType =navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+      console.log(devicesType)
+      if ( devicesType !== null){
+        this.tabPos='top'
+        this.lWidth='2%'
+        this.rWidth='2%'
+      }
     }
   }
 });
