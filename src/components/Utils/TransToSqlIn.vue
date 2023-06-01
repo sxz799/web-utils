@@ -5,6 +5,7 @@
       <el-checkbox v-model="splitSpace" label="空格作为分隔符" size="large"/>
       <el-checkbox v-model="includeParentheses" label="结果加上括号" size="large"/>
       <el-checkbox v-model="wrapResult" label="结果换行显示" size="large"/>
+      <el-checkbox v-model="numType" label="不带单引号" size="large"/>
     </el-form-item>
     <el-form-item>
       <el-input
@@ -50,6 +51,7 @@ export default {
       splitSpace: false,
       wrapResult: true,
       includeParentheses: false,
+      numType: false,
       textarea1: '',
       textarea2: ''
     };
@@ -97,6 +99,12 @@ export default {
       if (this.wrapResult) {
         searchString = /','/gi;
         replaceString = "',\n'";
+        newString = newString.replace(searchString, replaceString);
+      }
+
+      if (this.numType){
+        searchString = /'/gi;
+        replaceString = "";
         newString = newString.replace(searchString, replaceString);
       }
 
