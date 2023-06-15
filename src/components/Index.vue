@@ -27,6 +27,12 @@
                   <PasswordGenerator/>
                 </el-card>
               </el-tab-pane>
+              <el-tab-pane label="Base64" style="max-height: 600px; overflow-y: auto;">
+                <el-card class="box-card">
+                  <p style="text-align: left">Base64</p>
+                  <Base64Converter/>
+                </el-card>
+              </el-tab-pane>
               <el-tab-pane label="...">
                 <el-card class="box-card" style="max-height: 600px; overflow-y: auto;">
                   ...
@@ -50,7 +56,8 @@ import {defineComponent} from 'vue';
 import SubscribeTrans from './Utils/SubscribeTrans.vue'
 import TransToSqlIn from './Utils/TransToSqlIn.vue'
 import PasswordGenerator from './Utils/PasswordGenerator.vue'
-import {th} from "element-plus/es/locale";
+import Base64Converter from './Utils/Base64Converter.vue'
+
 
 export default defineComponent({
   name: 'Index',
@@ -58,7 +65,7 @@ export default defineComponent({
     msg: String,
   },
   components: {
-    SubscribeTrans, TransToSqlIn,PasswordGenerator
+    SubscribeTrans, TransToSqlIn,PasswordGenerator,Base64Converter
   },
   mounted() {
     this.IsPhoneView()
