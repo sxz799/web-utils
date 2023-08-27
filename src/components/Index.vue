@@ -5,7 +5,6 @@
       <el-container>
 
         <el-aside :width="lWidth"></el-aside>
-        <el-container>
           <el-main>
             <el-tabs :tab-position="tabPos" class="demo-tabs">
               <el-tab-pane label="格式化SQL IN 条件" style="max-height: 600px; overflow-y: auto;">
@@ -39,10 +38,7 @@
                 </el-card>
               </el-tab-pane>
             </el-tabs>
-
-
           </el-main>
-        </el-container>
         <el-aside :width=rWidth></el-aside>
       </el-container>
     </el-container>
@@ -83,8 +79,8 @@ export default defineComponent({
       console.log(devicesType)
       if ( devicesType !== null){
         this.tabPos='top'
-        this.lWidth='2%'
-        this.rWidth='2%'
+        this.lWidth='1%'
+        this.rWidth='1%'
       }
     }
   }
