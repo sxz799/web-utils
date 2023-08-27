@@ -1,39 +1,45 @@
 <template>
-  <el-form>
+  <el-space
+      fill
+      wrap
+      :fill-ratio="100"
+      direction="vertical"
+      style="width: 100%">
     <el-row>
-      <el-col :span="10">
+      <el-col>
         <el-input
             v-model="text"
-            :autosize="{ minRows: 20, maxRows: 20 }"
+            :autosize="{ minRows: 10, maxRows: 20 }"
             type="textarea"
             placeholder="请输入文本"
         />
       </el-col>
+    </el-row>
+    <el-row>
+      <el-col>
 
-      <el-col :span="4">
-        <div class="button">
+        <el-button-group>
           <el-button type="primary" @click="encode">转换为Base64</el-button>
-        </div>
-        <div class="button">
           <el-button type="primary" @click="decode">解码Base64</el-button>
-        </div>
+        </el-button-group>
 
       </el-col>
-
-      <el-col :span="10">
+    </el-row>
+    <el-row>
+      <el-col>
         <el-input
             v-model="result"
-            :autosize="{ minRows: 20, maxRows: 20 }"
+            :autosize="{ minRows: 10, maxRows: 20 }"
             type="textarea"
             placeholder="转换结果"
         />
       </el-col>
     </el-row>
-  </el-form>
+  </el-space>
 </template>
 
 <script>
-import { ref } from 'vue';
+import {ref} from 'vue';
 
 export default {
   name: 'Base64Converter',
@@ -60,10 +66,5 @@ export default {
 </script>
 
 <style scoped>
-.button {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-}
+
 </style>

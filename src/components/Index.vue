@@ -1,48 +1,41 @@
 <template>
-  <div class="common-layout">
-    <el-container>
-      <el-header style="height: 10px;color: #42b983">常用小工具</el-header>
-      <el-container>
 
-        <el-aside :width="lWidth"></el-aside>
-          <el-main>
-            <el-tabs :tab-position="tabPos" class="demo-tabs">
-              <el-tab-pane label="格式化SQL IN 条件" style="max-height: 600px; overflow-y: auto;">
-                <el-card class="box-card">
-                  <p style="text-align: left">可将以换行符分隔的字符串转为 in 查询条件格式</p>
-                  <TransToSqlIn/>
-                </el-card>
-              </el-tab-pane>
-              <el-tab-pane label="ClashX节点格式转换" style="max-height: 600px; overflow-y: auto;">
-                <el-card class="box-card">
-                  <p style="text-align: left">适用于ClashX软件的节点格式转换</p>
-                  <SubscribeTrans/>
-                </el-card>
+<el-row>
+  <el-col :span="4" />
+  <el-col :span="16" >
+    <el-tabs tab-position="left">
+      <el-tab-pane label="格式化SQL IN 条件" class="myTab">
+        <el-card >
+          <p style="text-align: left">可将以换行符分隔的字符串转为 in 查询条件格式</p>
+          <TransToSqlIn/>
+        </el-card>
+      </el-tab-pane>
+      <el-tab-pane label="ClashX节点格式转换" class="myTab">
+        <el-card >
+          <p style="text-align: left">适用于ClashX软件的节点格式转换</p>
+          <SubscribeTrans/>
+        </el-card>
 
-              </el-tab-pane>
-              <el-tab-pane label="密码生成器" style="max-height: 600px; overflow-y: auto;">
-                <el-card class="box-card">
-                  <p style="text-align: left">密码生成器</p>
-                  <PasswordGenerator/>
-                </el-card>
-              </el-tab-pane>
-              <el-tab-pane label="Base64" style="max-height: 600px; overflow-y: auto;">
-                <el-card class="box-card">
-                  <p style="text-align: left">Base64</p>
-                  <Base64Converter/>
-                </el-card>
-              </el-tab-pane>
-              <el-tab-pane label="...">
-                <el-card class="box-card" style="max-height: 600px; overflow-y: auto;">
-                  ...
-                </el-card>
-              </el-tab-pane>
-            </el-tabs>
-          </el-main>
-        <el-aside :width=rWidth></el-aside>
-      </el-container>
-    </el-container>
-  </div>
+      </el-tab-pane>
+      <el-tab-pane label="密码生成器" class="myTab">
+        <el-card >
+          <p style="text-align: left">密码生成器</p>
+          <PasswordGenerator/>
+        </el-card>
+      </el-tab-pane>
+      <el-tab-pane label="Base64" class="myTab">
+        <el-card >
+          <p style="text-align: left">Base64</p>
+          <Base64Converter/>
+        </el-card>
+      </el-tab-pane>
+    </el-tabs>
+  </el-col>
+  <el-col :span="4" />
+
+
+</el-row>
+
 
 
 </template>
@@ -61,26 +54,21 @@ export default defineComponent({
     msg: String,
   },
   components: {
-    SubscribeTrans, TransToSqlIn,PasswordGenerator,Base64Converter
+    SubscribeTrans, TransToSqlIn, PasswordGenerator, Base64Converter
   },
   mounted() {
     this.IsPhoneView()
   },
   data() {
     return {
-      lWidth:'15%',
-      rWidth:'25%',
       tabPos: 'left',
     }
   },
-  methods:{
-    IsPhoneView(){
-      let devicesType =navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
-      console.log(devicesType)
-      if ( devicesType !== null){
-        this.tabPos='top'
-        this.lWidth='1%'
-        this.rWidth='1%'
+  methods: {
+    IsPhoneView() {
+      let devicesType = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+      if (devicesType) {
+        this.tabPos = 'top'
       }
     }
   }
@@ -89,6 +77,11 @@ export default defineComponent({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.myTab {
+  max-height: 700px;
+  overflow-y: auto;
+}
+
 h3 {
   margin: 40px 0 0;
 }
