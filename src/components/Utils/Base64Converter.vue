@@ -4,7 +4,8 @@
       wrap
       :fill-ratio="100"
       direction="vertical"
-      style="width: 100%">
+      style="width: 100%"
+  >
     <el-row>
       <el-col>
         <el-input
@@ -17,12 +18,10 @@
     </el-row>
     <el-row>
       <el-col>
-
         <el-button-group>
           <el-button type="primary" @click="encode">转换为Base64</el-button>
           <el-button type="primary" @click="decode">解码Base64</el-button>
         </el-button-group>
-
       </el-col>
     </el-row>
     <el-row>
@@ -38,14 +37,14 @@
   </el-space>
 </template>
 
-<script>
-import {ref} from 'vue';
+<script lang="ts">
+import { ref } from 'vue';
 
 export default {
   name: 'Base64Converter',
   setup() {
-    const text = ref('');
-    const result = ref('');
+    const text = ref<string>('');
+    const result = ref<string>('');
 
     const encode = () => {
       result.value = window.btoa(text.value);

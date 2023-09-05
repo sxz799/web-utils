@@ -1,102 +1,51 @@
+
+
 <template>
-
-<el-row>
-  <el-col :span="4" />
-  <el-col :span="16" >
-    <el-tabs tab-position="left">
-      <el-tab-pane label="格式化SQL IN 条件" class="myTab">
-        <el-card >
-          <p style="text-align: left">可将以换行符分隔的字符串转为 in 查询条件格式</p>
-          <TransToSqlIn/>
-        </el-card>
-      </el-tab-pane>
-      <el-tab-pane label="ClashX节点格式转换" class="myTab">
-        <el-card >
-          <p style="text-align: left">适用于ClashX软件的节点格式转换</p>
-          <SubscribeTrans/>
-        </el-card>
-
-      </el-tab-pane>
-      <el-tab-pane label="密码生成器" class="myTab">
-        <el-card >
-          <p style="text-align: left">密码生成器</p>
-          <PasswordGenerator/>
-        </el-card>
-      </el-tab-pane>
-      <el-tab-pane label="Base64" class="myTab">
-        <el-card >
-          <p style="text-align: left">Base64</p>
-          <Base64Converter/>
-        </el-card>
-      </el-tab-pane>
-    </el-tabs>
-  </el-col>
-  <el-col :span="4" />
-
-
-</el-row>
-
-
-
+  <el-row>
+    <el-col :span="4" :xs="0"/>
+    <el-col :span="16" :xs="24">
+      <el-tabs tab-position="top">
+        <el-tab-pane label="格式化SQL IN 条件">
+          <el-card >
+            <TransToSqlIn/>
+          </el-card>
+        </el-tab-pane>
+        <el-tab-pane label="密码生成器">
+          <el-card >
+            <PasswordGenerator/>
+          </el-card>
+        </el-tab-pane>
+        <el-tab-pane label="Base64">
+          <el-card >
+            <Base64Converter/>
+          </el-card>
+        </el-tab-pane>
+        <el-tab-pane label="MD5计算器">
+          <el-card >
+            <MD5Calculator/>
+          </el-card>
+        </el-tab-pane>
+        <el-tab-pane label="时间戳工具">
+          <el-card >
+            <TimestampConverter/>
+          </el-card>
+        </el-tab-pane>
+      </el-tabs>
+    </el-col>
+    <el-col :span="4" :xs="0"/>
+  </el-row>
 </template>
 
-<script lang="ts">
-import {defineComponent} from 'vue';
-import SubscribeTrans from './Utils/SubscribeTrans.vue'
-import TransToSqlIn from './Utils/TransToSqlIn.vue'
-import PasswordGenerator from './Utils/PasswordGenerator.vue'
-import Base64Converter from './Utils/Base64Converter.vue'
+<script setup lang="ts">
 
+import TransToSqlIn from './utils/TransToSqlIn.vue'
+import PasswordGenerator from './utils/PasswordGenerator.vue'
+import Base64Converter from './utils/Base64Converter.vue'
+import MD5Calculator from './utils/MD5Calculator.vue'
+import TimestampConverter from './utils/TimestampConverter.vue'
 
-export default defineComponent({
-  name: 'Index',
-  props: {
-    msg: String,
-  },
-  components: {
-    SubscribeTrans, TransToSqlIn, PasswordGenerator, Base64Converter
-  },
-  mounted() {
-    this.IsPhoneView()
-  },
-  data() {
-    return {
-      tabPos: 'left',
-    }
-  },
-  methods: {
-    IsPhoneView() {
-      let devicesType = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
-      if (devicesType) {
-        this.tabPos = 'top'
-      }
-    }
-  }
-});
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.myTab {
-  max-height: 700px;
-  overflow-y: auto;
-}
 
-h3 {
-  margin: 40px 0 0;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
 </style>
