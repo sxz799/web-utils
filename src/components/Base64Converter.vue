@@ -51,7 +51,8 @@ export default {
     };
 
     const decode = () => {
-      result.value = window.atob(text.value);
+      result.value = decodeURIComponent(escape(atob(text.value)))
+      //result.value = window.atob(text.value);
     };
 
     return {
