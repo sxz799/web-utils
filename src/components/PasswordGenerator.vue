@@ -34,8 +34,10 @@
         <el-input v-model="excludedChars"></el-input>
       </el-form-item>
 
-      <el-button type="primary" @click="generatePassword">生成密码</el-button>
+      
+      <el-button type="primary" @click="generatePassword2">生成密码并复制</el-button>
       <el-button type="success" @click="copyPassword" :disabled="!password">复制</el-button>
+      <el-button type="normal" @click="generatePassword">生成密码</el-button>
     </div>
   </el-form>
 </template>
@@ -81,7 +83,10 @@ export default defineComponent({
 
       password.value = result;
     };
-
+    const generatePassword2 = () => {
+      generatePassword()
+      copyPassword()
+    }
     const copyPassword = () => {
       navigator.clipboard.writeText(password.value).then(() => {
         ElMessage.success('密码已复制到剪贴板！');
@@ -101,6 +106,7 @@ export default defineComponent({
       length,
       options,
       generatePassword,
+      generatePassword2,
       copyPassword,
       formatTooltip,
     };

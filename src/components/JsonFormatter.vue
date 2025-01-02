@@ -1,19 +1,23 @@
 <template>
   <el-form>
-    <el-form-item>
-      <el-input
-        v-model="textarea1"
-        :autosize="{ minRows: 6, maxRows: 6 }"
-        type="textarea"
-        placeholder="Please input"
-      />
-    </el-form-item>
-    <el-form-item style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-      <el-button type="primary" @click="modify">转换</el-button>
-    </el-form-item>
-    <el-form-item>
-      <pre>{{ textarea2 }}</pre>
-    </el-form-item>
+    <el-row :gutter="20">
+      <el-col :span="10">
+        <el-form-item>
+          <el-input v-model="textarea1" :autosize="{ minRows: 6, maxRows: 6 }" type="textarea"
+            placeholder="Please input" />
+        </el-form-item>
+        <el-form-item style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <el-button type="primary" @click="modify">转换 =></el-button>
+        </el-form-item>
+      </el-col>
+
+      <el-col :span="14">
+        <el-form-item>
+          <pre>{{ textarea2 }}</pre>
+        </el-form-item>
+      </el-col>
+    </el-row>
+
   </el-form>
 </template>
 
@@ -64,5 +68,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
