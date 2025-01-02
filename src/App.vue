@@ -10,6 +10,11 @@
             <TransToSqlIn/>
           </el-card>
         </el-tab-pane>
+        <el-tab-pane label="JSON格式化">
+          <el-card >
+            <JsonFormatter/>
+          </el-card>
+        </el-tab-pane>
         <el-tab-pane label="密码生成器">
           <el-card >
             <PasswordGenerator/>
@@ -43,6 +48,7 @@ import PasswordGenerator from './components/PasswordGenerator.vue'
 import Base64Converter from './components/Base64Converter.vue'
 import MD5Calculator from './components/MD5Calculator.vue'
 import TimestampConverter from './components/TimestampConverter.vue'
+import JsonFormatter from './components/JsonFormatter.vue'
 
 </script>
 
